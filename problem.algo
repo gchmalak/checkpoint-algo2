@@ -1,0 +1,52 @@
+
+ALGORITHM sum_distinct
+VAR
+    i, j, n, sum : INTEGER;
+    set1, set2 : ARRAY_OF INTEGER[n];
+    found : BOOLEAN;
+BEGIN
+    sum <- 0;
+
+    write("give the size of the arrays:");
+    read(n);
+
+    FOR i FROM 0 TO n-1 STEP 1 DO
+        write("enter elements of set1:");
+        read(set1[i]);
+    END_FOR
+        
+    FOR j FROM 0 TO n-1 STEP 1 DO
+        write("enter elements of set2:");
+        read(set2[j]);
+    END_FOR
+
+    // Elements in set1 not in set2
+    FOR i FROM 0 TO n-1 STEP 1 DO
+        found <- FALSE;
+        FOR j FROM 0 TO n-1 STEP 1 DO
+            IF set1[i] = set2[j] THEN
+                found <- TRUE;
+            END_IF
+        END_FOR
+
+        IF found = FALSE THEN
+            sum <- sum + set1[i];
+        END_IF
+    END_FOR
+
+    // Elements in set2 not in set1
+    FOR i FROM 0 TO n-1 STEP 1 DO
+        found <- FALSE;
+        FOR j FROM 0 TO n-1 STEP 1 DO
+            IF set2[i] = set1[j] THEN
+                found <- TRUE;
+            END_IF
+        END_FOR
+
+        IF found = FALSE THEN
+            sum <- sum + set2[i];
+        END_IF
+    END_FOR
+
+    write("sum of distinct numbers is:", sum);
+END
